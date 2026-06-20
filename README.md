@@ -1,3 +1,19 @@
+# 🏥 Arogya.ai
+> Sahi ilaaj, sahi jagah, sahi waqt
+
+AI-powered government hospital navigator for India.
+Helping every Indian find free public healthcare near them — in their own language.
+
+## Features
+- Find govt hospitals by symptom, district, specialist
+- AI symptom → department mapper (Hindi + English + Hinglish)
+- Ayushman Bharat & scheme eligibility checker
+- Crowdsourced live OPD status
+- Auto-draft referral letters & RTI complaints
+
+## Stack
+React • FastAPI • PostgreSQL • LangChain • Claude API • Leaflet.js
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
