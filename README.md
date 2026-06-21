@@ -6,7 +6,7 @@ Helping every Indian find free public healthcare near them — in their own lang
 
 ## Features
 - Find govt hospitals by symptom, district, specialist
-- AI symptom → department mapper (Hindi + English + Hinglish)
+- AI symptom → department mapper (Multiple Language)
 - Ayushman Bharat & scheme eligibility checker
 - Crowdsourced live OPD status
 - Auto-draft referral letters & RTI complaints
