@@ -2,7 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function FloatingRobot({ onClick, isOpen }) {
   const [eyeOffset, setEyeOffset] = useState({ x: 0, y: 0 });
+  const [isAttracting, setIsAttracting] = useState(false);
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleAttention = () => {
+      setIsAttracting(true);
+      setTimeout(() => setIsAttracting(false), 1500);
+    };
+    window.addEventListener('triggerAIAttention', handleAttention);
+    return () => window.removeEventListener('triggerAIAttention', handleAttention);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -81,14 +91,20 @@ export default function FloatingRobot({ onClick, isOpen }) {
         justifyContent: 'flex-end',
         zIndex: 1000,
         transition: 'transform 0.2s ease',
+        animation: isAttracting ? 'attractAttention 1.5s ease-in-out' : 'none',
       }}
-      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
-      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+      onMouseEnter={e => !isAttracting && (e.currentTarget.style.transform = 'scale(1.05)')}
+      onMouseLeave={e => !isAttracting && (e.currentTarget.style.transform = 'scale(1)')}
     >
       <style>{`
         @keyframes floatRobot {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-6px) rotate(2deg); }
+        }
+        @keyframes attractAttention {
+          0% { transform: scale(1) rotateY(0deg); filter: drop-shadow(0 0 0 rgba(89,225,255,0)); }
+          50% { transform: scale(1.4) rotateY(180deg); filter: drop-shadow(0 0 40px rgba(89,225,255,1)); }
+          100% { transform: scale(1) rotateY(360deg); filter: drop-shadow(0 0 0 rgba(89,225,255,0)); }
         }
         @keyframes breatheGlow {
           0%, 100% { filter: drop-shadow(0 10px 15px rgba(89,225,255,0.2)); }
