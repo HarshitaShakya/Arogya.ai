@@ -115,3 +115,30 @@ def analyze_medical_image(image_bytes: bytes, mime_type: str = "image/jpeg") -> 
             "severity": "None",
             "analysis_text": "Failed to analyze image due to an internal error."
         }
+
+def get_faq_answer(query: str) -> str:
+    system_prompt = """You are the official Support Assistant for Arogya.ai.
+Answer the user's question concisely and accurately based on the following facts:
+
+- Arogya.ai is an AI-powered healthcare platform that helps users discover government hospitals, check OPD timings, explore free healthcare services, and receive intelligent healthcare guidance.
+- Searching hospitals and accessing government healthcare information is completely free.
+- Appointment booking is available only for hospitals that support online scheduling.
+- We provide healthcare information and AI assistance but do not replace professional medical advice.
+- User privacy and data security are our highest priorities.
+
+If the question is not covered by these facts, provide a polite, helpful, and logical response that aligns with a free public healthcare platform in India. Keep answers under 3 sentences."""
+    
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": query}
+            ],
+            max_tokens=200,
+            temperature=0.3,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"Error in Groq FAQ API: {e}")
+        return "I'm currently unable to answer that, please try again later or contact support@arogya.ai."
