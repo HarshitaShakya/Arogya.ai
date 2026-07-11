@@ -562,7 +562,7 @@ transformStyle: 'preserve-3d',
               {t.ctaSub} Arogya.ai is built to help you find the right one, right when you need it.
             </p>
             
-            <button onClick={() => navigate('/search')} style={{ padding: '20px 40px', background: 'linear-gradient(135deg, #2563eb, #6366f1)', color: '#fff', borderRadius: 999, border: 'none', fontWeight: 800, fontSize: 18, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 12, boxShadow: '0 12px 32px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255,255,255,0.2)', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
+            <button onClick={() => { navigate('/'); setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100); }} style={{ padding: '20px 40px', background: 'linear-gradient(135deg, #2563eb, #6366f1)', color: '#fff', borderRadius: 999, border: 'none', fontWeight: 800, fontSize: 18, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 12, boxShadow: '0 12px 32px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255,255,255,0.2)', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)' }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 40px rgba(37, 99, 235, 0.5), inset 0 1px 0 rgba(255,255,255,0.2)' }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 12px 32px rgba(37, 99, 235, 0.4), inset 0 1px 0 rgba(255,255,255,0.2)' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -644,20 +644,36 @@ transformStyle: 'preserve-3d',
             {/* Links Columns */}
             <div>
               <div style={{ color: '#64748b', fontSize: 13, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 28 }}>Product</div>
-              {['Find Hospital', 'AI Assistant', 'Features', 'Community Reviews'].map(l => (
-                <div key={l} style={{ marginBottom: 18 }}><a href="#" style={{ color: '#cbd5e1', fontSize: 15, textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#59e1ff'} onMouseLeave={e => e.target.style.color = '#cbd5e1'}>{l}</a></div>
+              {[
+                { label: 'Find Hospital', onClick: (e) => { e.preventDefault(); navigate('/'); setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100); } },
+                { label: 'AI Assistant', onClick: (e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('triggerAIAttention')); } },
+                { label: 'Features', onClick: (e) => { e.preventDefault(); navigate('/features'); window.scrollTo(0,0); } },
+                { label: 'Community Reviews', onClick: (e) => { e.preventDefault(); navigate('/info/community-reviews'); window.scrollTo(0,0); } }
+              ].map(l => (
+                <div key={l.label} style={{ marginBottom: 18 }}><a href="#" onClick={l.onClick} style={{ color: '#cbd5e1', fontSize: 15, textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#59e1ff'} onMouseLeave={e => e.target.style.color = '#cbd5e1'}>{l.label}</a></div>
               ))}
             </div>
             <div>
               <div style={{ color: '#64748b', fontSize: 13, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 28 }}>Support</div>
-              {['Help Center', 'Privacy Policy', 'Terms of Use', 'Contact Us'].map(l => (
-                <div key={l} style={{ marginBottom: 18 }}><a href="#" style={{ color: '#cbd5e1', fontSize: 15, textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#59e1ff'} onMouseLeave={e => e.target.style.color = '#cbd5e1'}>{l}</a></div>
+              {[
+                { label: 'Help Center', onClick: (e) => { e.preventDefault(); navigate('/help-center'); window.scrollTo(0,0); } },
+                { label: 'FAQs', onClick: (e) => { e.preventDefault(); navigate('/info/faqs'); window.scrollTo(0,0); } },
+                { label: 'Privacy Policy', onClick: (e) => { e.preventDefault(); navigate('/info/privacy-policy'); window.scrollTo(0,0); } },
+                { label: 'Terms of Use', onClick: (e) => { e.preventDefault(); navigate('/info/terms-of-use'); window.scrollTo(0,0); } },
+                { label: 'Contact Us', onClick: (e) => { e.preventDefault(); navigate('/info/contact-us'); window.scrollTo(0,0); } }
+              ].map(l => (
+                <div key={l.label} style={{ marginBottom: 18 }}><a href="#" onClick={l.onClick} style={{ color: '#cbd5e1', fontSize: 15, textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#59e1ff'} onMouseLeave={e => e.target.style.color = '#cbd5e1'}>{l.label}</a></div>
               ))}
             </div>
             <div>
               <div style={{ color: '#64748b', fontSize: 13, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 28 }}>About</div>
-              {['About Us', 'Our Mission', 'Careers', 'Media Kit'].map(l => (
-                <div key={l} style={{ marginBottom: 18 }}><a href="#" style={{ color: '#cbd5e1', fontSize: 15, textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#59e1ff'} onMouseLeave={e => e.target.style.color = '#cbd5e1'}>{l}</a></div>
+              {[
+                { label: 'About Us', onClick: (e) => { e.preventDefault(); navigate('/info/about-us'); window.scrollTo(0,0); } },
+                { label: 'Our Mission', onClick: (e) => { e.preventDefault(); navigate('/info/our-mission'); window.scrollTo(0,0); } },
+                { label: 'Careers', onClick: (e) => { e.preventDefault(); navigate('/info/careers'); window.scrollTo(0,0); } },
+                { label: 'Media Kit', onClick: (e) => { e.preventDefault(); navigate('/info/media-kit'); window.scrollTo(0,0); } }
+              ].map(l => (
+                <div key={l.label} style={{ marginBottom: 18 }}><a href="#" onClick={l.onClick} style={{ color: '#cbd5e1', fontSize: 15, textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#59e1ff'} onMouseLeave={e => e.target.style.color = '#cbd5e1'}>{l.label}</a></div>
               ))}
             </div>
 
