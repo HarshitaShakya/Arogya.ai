@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from pydantic import BaseModel
-from app.services.ai_service import get_ai_response, analyze_medical_image
+from app.services.ai_service import get_ai_response, analyze_medical_image, get_faq_answer
 
 router = APIRouter()
 
@@ -21,3 +21,11 @@ async def analyze_image(file: UploadFile = File(...)):
     file_bytes = await file.read()
     result = analyze_medical_image(file_bytes, mime_type=file.content_type)
     return result
+
+class FAQQuery(BaseModel):
+    query: str
+
+@router.post("/faq")
+def faq_search(body: FAQQuery):
+    answer = get_faq_answer(body.query)
+    return {"answer": answer}
