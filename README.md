@@ -31,7 +31,7 @@ Make sure you have Node.js and npm installed on your system.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/HarshitaShakya/Arogya.ai.git
+   git clone repo_url
    cd "Arogya.ai"
    ```
 
@@ -55,6 +55,27 @@ Make sure you have Node.js and npm installed on your system.
 - **Routing**: React Router DOM
 - **Backend**: Python (FastAPI/Flask/Django)
 
+## 🔄 Workflow Structure
+
+```mermaid
+graph TD
+    A[User Visits Arogya.ai] --> B{Selects Path}
+    B -->|Symptoms/Diagnosis| C[🤖 AI Health Assistant]
+    B -->|Find Care| D[🏥 Hospital Locator]
+    B -->|Urgent| E[🚑 Emergency Services]
+    
+    C --> F[Input Symptoms]
+    F --> G[AI Recommends Department & Tests]
+    G --> H[Map Shows Relevant Hospitals]
+    
+    D --> I[Filter by Specialty or Location]
+    I --> J[View OPD Timings & Hospital Details]
+    J --> K[Save to Profile / Navigate]
+    
+    E --> L[Find 24/7 Trauma Centers]
+    E --> M[Locate Nearest Blood Banks]
+```
+
 ## 🤝 Contributing
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -64,10 +85,9 @@ Contributions are what make the open source community such an amazing place to l
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
+
 
 ---
 <div align="center">
-  <p>Built with ❤️ by the Arogya.ai Team</p>
+  <p>Built with ❤️ by Harshita Shakya</p>
 </div>
