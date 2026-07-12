@@ -9,6 +9,7 @@ import Auth from './pages/Auth'
 import Favourites from './pages/Favourites'
 import FreeServicesResults from './pages/FreeServicesResults'
 import AiAnalysis from './pages/AiAnalysis'
+import AiTreatmentJourney from './pages/AiTreatmentJourney'
 import InfoPage from './pages/InfoPage'
 import HelpCenter from './pages/HelpCenter'
 import Faqs from './pages/Faqs'
@@ -37,6 +38,7 @@ function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/ai-analysis" element={<AiAnalysis />} />
+          <Route path="/ai-treatment-journey" element={<AiTreatmentJourney />} />
           <Route path="/info/faqs" element={<Faqs />} />
           <Route path="/info/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/info/terms-of-use" element={<TermsOfUse />} />
