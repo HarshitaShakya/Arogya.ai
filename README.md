@@ -58,40 +58,33 @@ Make sure you have Node.js and npm installed on your system.
 ## 🔄 Workflow Structure
 
 ```mermaid
-flowchart TB
-    %% Styling
-    classDef userEntry fill:#59e1ff,stroke:#0f172a,stroke-width:2px,color:#0f172a,font-weight:bold
-    classDef module fill:#1e293b,stroke:#59e1ff,stroke-width:2px,color:#fff
-    classDef process fill:#334155,stroke:#94a3b8,stroke-width:1px,color:#fff
-    classDef database fill:#0f172a,stroke:#fbbf24,stroke-width:2px,color:#fff
-
-    subgraph Client [📱 User Interface Layer]
-        direction TB
-        A([User Login / Entry]):::userEntry --> B{Select Path}
-        B -->|Symptoms| C[🤖 AI Health Assistant]:::module
-        B -->|Find Care| D[🏥 Hospital Locator]:::module
-        B -->|Urgent| E[🚑 Emergency Services]:::module
-    end
-
-    subgraph Logic [⚙️ Core Processing]
-        direction TB
-        C --> F(Analyze Symptoms & Predict Dept):::process
-        D --> G(Spatial Search & OPD Filters):::process
-        E --> H(Real-Time Trauma & Blood Bank Check):::process
-    end
-
-    subgraph Data [💾 Database & APIs]
-        direction TB
-        F -.-> I[(Medical Knowledge Base)]:::database
-        G -.-> J[(Hospitals & Doctors DB)]:::database
-        H -.-> K[(Emergency Live Feeds)]:::database
-    end
-
-    subgraph Output [🎯 Actionable Outcomes]
-        direction TB
-        F --> L([Personalized Treatment Plan]):::userEntry
-        G --> M([Interactive Map & Booking]):::userEntry
-        H --> N([Immediate SOS & Routing]):::userEntry
+sequenceDiagram
+    autonumber
+    actor Patient
+    participant App as Arogya.ai Frontend
+    participant AI as AI Engine
+    participant DB as Health Database
+    
+    Patient->>App: Enters Symptoms & Location
+    App->>AI: Send symptom data for analysis
+    activate AI
+    AI-->>App: Return predicted department & required tests
+    deactivate AI
+    
+    App->>DB: Query nearest hospitals by department
+    activate DB
+    DB-->>App: Return hospital list, OPD timings & map data
+    deactivate DB
+    
+    App->>Patient: Display Interactive Treatment Journey
+    
+    opt Emergency Situation
+        Patient->>App: Clicks 'Emergency Services'
+        App->>DB: Fetch 24/7 Trauma Centers & Blood Banks
+        activate DB
+        DB-->>App: Immediate SOS Routing Data
+        deactivate DB
+        App-->>Patient: Show critical emergency contacts & navigation
     end
 ```
 
