@@ -55,37 +55,49 @@ Make sure you have Node.js and npm installed on your system.
 - **Routing**: React Router DOM
 - **Backend**: Python (FastAPI/Flask/Django)
 
-## 🔄 Workflow Structure
+## 🧠 Core System Architecture & Patient Journey
 
+To provide a comprehensive understanding of Arogya.ai, we've mapped out both our **Core Modules** and the **Interactive Patient Experience**.
+
+### 1. System Ecosystem (Mindmap)
 ```mermaid
-sequenceDiagram
-    autonumber
-    actor Patient
-    participant App as Arogya.ai Frontend
-    participant AI as AI Engine
-    participant DB as Health Database
-    
-    Patient->>App: Enters Symptoms & Location
-    App->>AI: Send symptom data for analysis
-    activate AI
-    AI-->>App: Return predicted department & required tests
-    deactivate AI
-    
-    App->>DB: Query nearest hospitals by department
-    activate DB
-    DB-->>App: Return hospital list, OPD timings & map data
-    deactivate DB
-    
-    App->>Patient: Display Interactive Treatment Journey
-    
-    opt Emergency Situation
-        Patient->>App: Clicks 'Emergency Services'
-        App->>DB: Fetch 24/7 Trauma Centers & Blood Banks
-        activate DB
-        DB-->>App: Immediate SOS Routing Data
-        deactivate DB
-        App-->>Patient: Show critical emergency contacts & navigation
-    end
+mindmap
+  root((Arogya.ai))
+    🤖 AI Health Assistant
+      Symptom Triage
+      Department Prediction
+      Required Tests Logic
+    🏥 Smart Hospital Locator
+      Real-Time Interactive Maps
+      OPD Timings & Schedules
+      Specialty-Based Filters
+    🚑 Emergency SOS
+      24/7 Trauma Centers
+      Live Blood Bank Access
+      Immediate Routing
+    👤 User Profiles
+      Personal Treatment Journey
+      Saved Favorite Hospitals
+```
+
+### 2. The Patient Experience (Journey)
+```mermaid
+journey
+    title Arogya.ai Step-by-Step Treatment Flow
+    section 1. AI Triage
+      Enter Symptoms: 5: Patient
+      Analyze Health Data: 5: AI Engine
+      Suggest Medical Dept: 4: AI Engine
+    section 2. Discovery
+      Locate Nearby Hospitals: 5: Patient, Maps API
+      Filter by Specialty: 4: Patient
+      View OPD Timings: 5: Patient
+    section 3. Action
+      Book Appointment / Save: 5: Patient
+      Navigate via Real-Time Map: 5: Patient
+    section 4. Emergency (If Urgent)
+      Find 24/7 Trauma Centers: 5: SOS System
+      Contact Blood Banks: 5: SOS System
 ```
 
 ## 🤝 Contributing
