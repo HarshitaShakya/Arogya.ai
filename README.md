@@ -55,9 +55,9 @@ Make sure you have Node.js and npm installed on your system.
 - **Routing**: React Router DOM
 - **Backend**: Python (FastAPI/Flask/Django)
 
-## 🧠 Core System Architecture & Patient Journey
+## 🧠 Core Architecture & Workflow Structure
 
-To provide a comprehensive understanding of Arogya.ai, we've mapped out both our **Core Modules** and the **Interactive Patient Experience**.
+To provide a comprehensive understanding of Arogya.ai, we've mapped out our **System Ecosystem** and technical **Workflow Structure**.
 
 ### 1. System Ecosystem (Mindmap)
 ```mermaid
@@ -80,24 +80,32 @@ mindmap
       Saved Favorite Hospitals
 ```
 
-### 2. The Patient Experience (Journey)
+### 2. Workflow Structure
 ```mermaid
-timeline
-    title 🌟 Arogya.ai Step-by-Step Treatment Flow
-    section 1. AI Triage
-        Enter Symptoms : Patient inputs health issues
-        Analyze Data : AI processes symptoms
-        Predict Dept : AI suggests the best medical department
-    section 2. Discovery
-        Locate Hospitals : Real-time map shows nearby options
-        Filter & Sort : Refine by specialty and distance
-        Check OPD : View precise out-patient timings
-    section 3. Action
-        Book & Save : Secure your appointment slot
-        Navigate : Get turn-by-turn routing via Maps
-    section 4. Emergency (Urgent)
-        Trauma Centers : Locate 24/7 emergency care instantly
-        Blood Banks : Find immediate blood availability
+flowchart LR
+    %% Custom Tech Styling
+    classDef init fill:#3b82f6,stroke:#1e3a8a,stroke-width:2px,color:#fff,font-weight:bold
+    classDef aiEngine fill:#8b5cf6,stroke:#4c1d95,stroke-width:2px,color:#fff
+    classDef geoEngine fill:#10b981,stroke:#064e3b,stroke-width:2px,color:#fff
+    classDef dataNode fill:#0f172a,stroke:#475569,stroke-width:1px,color:#e2e8f0
+    
+    A([User Client]):::init --> B{API Gateway}
+    
+    B -->|Symptom Log| C(AI Triage Engine):::aiEngine
+    C --> D[Predict Dept & Tests]:::dataNode
+    D --> E(Geo-Spatial Locator):::geoEngine
+    
+    B -->|Manual Search| E
+    E --> F[OPD Timings & Maps]:::dataNode
+    
+    B -->|SOS / Urgent| G(Emergency Dispatch):::init
+    G --> H[24/7 Trauma Centers]:::dataNode
+    G --> I[Live Blood Banks]:::dataNode
+    
+    F --> J([Final Treatment Roadmap]):::init
+    D -.-> J
+    H --> J
+    I --> J
 ```
 
 ## 🤝 Contributing
