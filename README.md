@@ -82,22 +82,22 @@ mindmap
 
 ### 2. The Patient Experience (Journey)
 ```mermaid
-journey
-    title Arogya.ai Step-by-Step Treatment Flow
+timeline
+    title 🌟 Arogya.ai Step-by-Step Treatment Flow
     section 1. AI Triage
-      Enter Symptoms: 5: Patient
-      Analyze Health Data: 5: AI Engine
-      Suggest Medical Dept: 4: AI Engine
+        Enter Symptoms : Patient inputs health issues
+        Analyze Data : AI processes symptoms
+        Predict Dept : AI suggests the best medical department
     section 2. Discovery
-      Locate Nearby Hospitals: 5: Patient, Maps API
-      Filter by Specialty: 4: Patient
-      View OPD Timings: 5: Patient
+        Locate Hospitals : Real-time map shows nearby options
+        Filter & Sort : Refine by specialty and distance
+        Check OPD : View precise out-patient timings
     section 3. Action
-      Book Appointment / Save: 5: Patient
-      Navigate via Real-Time Map: 5: Patient
-    section 4. Emergency (If Urgent)
-      Find 24/7 Trauma Centers: 5: SOS System
-      Contact Blood Banks: 5: SOS System
+        Book & Save : Secure your appointment slot
+        Navigate : Get turn-by-turn routing via Maps
+    section 4. Emergency (Urgent)
+        Trauma Centers : Locate 24/7 emergency care instantly
+        Blood Banks : Find immediate blood availability
 ```
 
 ## 🤝 Contributing
