@@ -58,22 +58,41 @@ Make sure you have Node.js and npm installed on your system.
 ## 🔄 Workflow Structure
 
 ```mermaid
-graph TD
-    A[User Visits Arogya.ai] --> B{Selects Path}
-    B -->|Symptoms/Diagnosis| C[🤖 AI Health Assistant]
-    B -->|Find Care| D[🏥 Hospital Locator]
-    B -->|Urgent| E[🚑 Emergency Services]
-    
-    C --> F[Input Symptoms]
-    F --> G[AI Recommends Department & Tests]
-    G --> H[Map Shows Relevant Hospitals]
-    
-    D --> I[Filter by Specialty or Location]
-    I --> J[View OPD Timings & Hospital Details]
-    J --> K[Save to Profile / Navigate]
-    
-    E --> L[Find 24/7 Trauma Centers]
-    E --> M[Locate Nearest Blood Banks]
+flowchart TB
+    %% Styling
+    classDef userEntry fill:#59e1ff,stroke:#0f172a,stroke-width:2px,color:#0f172a,font-weight:bold
+    classDef module fill:#1e293b,stroke:#59e1ff,stroke-width:2px,color:#fff
+    classDef process fill:#334155,stroke:#94a3b8,stroke-width:1px,color:#fff
+    classDef database fill:#0f172a,stroke:#fbbf24,stroke-width:2px,color:#fff
+
+    subgraph Client [📱 User Interface Layer]
+        direction TB
+        A([User Login / Entry]):::userEntry --> B{Select Path}
+        B -->|Symptoms| C[🤖 AI Health Assistant]:::module
+        B -->|Find Care| D[🏥 Hospital Locator]:::module
+        B -->|Urgent| E[🚑 Emergency Services]:::module
+    end
+
+    subgraph Logic [⚙️ Core Processing]
+        direction TB
+        C --> F(Analyze Symptoms & Predict Dept):::process
+        D --> G(Spatial Search & OPD Filters):::process
+        E --> H(Real-Time Trauma & Blood Bank Check):::process
+    end
+
+    subgraph Data [💾 Database & APIs]
+        direction TB
+        F -.-> I[(Medical Knowledge Base)]:::database
+        G -.-> J[(Hospitals & Doctors DB)]:::database
+        H -.-> K[(Emergency Live Feeds)]:::database
+    end
+
+    subgraph Output [🎯 Actionable Outcomes]
+        direction TB
+        F --> L([Personalized Treatment Plan]):::userEntry
+        G --> M([Interactive Map & Booking]):::userEntry
+        H --> N([Immediate SOS & Routing]):::userEntry
+    end
 ```
 
 ## 🤝 Contributing
