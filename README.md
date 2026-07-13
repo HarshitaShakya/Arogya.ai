@@ -13,10 +13,10 @@
 <br />
 
 ## 🌟 Overview
-**Arogya.ai** is an advanced AI-powered healthcare companion designed to bridge the gap between patients and the right medical facilities. By leveraging artificial intelligence, Arogya.ai guides users through a comprehensive **Treatment Journey**, helping them identify their symptoms, find the most appropriate medical departments, and locate nearby government and private hospitals quickly and efficiently.
+**Arogya.ai** is an advanced AI-powered healthcare companion designed to bridge the gap between patients and the right medical facilities. By leveraging artificial intelligence, Arogya.ai guides users through a comprehensive **Care Workspace**, helping them identify their symptoms, find the most appropriate medical departments, and locate nearby government and private hospitals quickly and efficiently.
 
 ## ✨ Key Features
-- **🧠 AI Treatment Journey**: An intelligent, step-by-step interactive map (Symptoms ➔ Suggested Department ➔ Suggested Tests ➔ Nearby Hospitals ➔ Appointment ➔ Medicine Reminder ➔ Recovery Tracking).
+- **🧠 AI Care Workspace**: An intelligent, step-by-step interactive map (Symptoms ➔ Suggested Department ➔ Suggested Tests ➔ Nearby Hospitals ➔ Appointment ➔ Medicine Reminder ➔ Recovery Tracking).
 - **🏥 Smart Hospital Locator**: Discover nearby healthcare facilities, complete with OPD timings, department specializations, and real-time maps.
 - **🚑 Emergency Assistance**: Quick access to 24/7 emergency wards, trauma centers, and blood banks.
 - **🎨 Premium Dark UI**: A highly responsive, dynamic, and aesthetic user interface featuring glassmorphism, subtle micro-animations, and vibrant gradients.
@@ -76,7 +76,7 @@ mindmap
       Live Blood Bank Access
       Immediate Routing
     👤 User Profiles
-      Personal Treatment Journey
+      Personal Care Workspace
       Saved Favorite Hospitals
 ```
 
