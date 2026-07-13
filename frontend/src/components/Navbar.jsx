@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useAppStore, languages } from '../store/appStore'
 import { supabase } from '../services/supabase'
 import { getTheme } from '../utils/theme'
-
+import { HeartPulse } from 'lucide-react'
 import AppLogo from './AppLogo'
 import EmergencyModal from './EmergencyModal'
 
@@ -55,6 +55,9 @@ export default function Navbar() {
           <Link to="/search" style={navLink}>Find Hospital</Link>
           <Link to="/ai-analysis" style={{ ...navLink, color: '#3b82f6', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px', background: darkMode ? 'rgba(59, 130, 246, 0.1)' : 'rgba(59, 130, 246, 0.05)' }}>
             <span style={{ fontSize: '1.2em' }}>✨</span> AI Analysis
+          </Link>
+          <Link to="/ai-care-journey" style={{ ...navLink, color: '#a855f7', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px', background: darkMode ? 'rgba(168, 85, 247, 0.1)' : 'rgba(168, 85, 247, 0.05)' }}>
+            <HeartPulse size={18} /> AI Care Workspace
           </Link>
         </div>
 
