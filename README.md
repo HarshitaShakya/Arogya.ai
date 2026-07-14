@@ -17,6 +17,7 @@
 
 ## ✨ Key Features
 - **🧠 AI Care Workspace**: An intelligent, step-by-step interactive map (Symptoms ➔ Suggested Department ➔ Suggested Tests ➔ Nearby Hospitals ➔ Appointment ➔ Medicine Reminder ➔ Recovery Tracking).
+- **📈 Health Streak Tracker**: Log daily wellness tasks (hydration, physical activity, sleep, medication, check-ins) and maintain a streak to unlock premium visual features.
 - **🏥 Smart Hospital Locator**: Discover nearby healthcare facilities, complete with OPD timings, department specializations, and real-time maps.
 - **🚑 Emergency Assistance**: Quick access to 24/7 emergency wards, trauma centers, and blood banks.
 - **🎨 Premium Dark UI**: A highly responsive, dynamic, and aesthetic user interface featuring glassmorphism, subtle micro-animations, and vibrant gradients.
