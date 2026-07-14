@@ -22,7 +22,6 @@ import Careers from './pages/Careers'
 import MediaKit from './pages/MediaKit'
 import Features from './pages/Features'
 import CommunityReviews from './pages/CommunityReviews'
-
 function App() {
   const darkMode = useAppStore(s => s.darkMode)
   return (
