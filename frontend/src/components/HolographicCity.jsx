@@ -403,20 +403,20 @@ export default function HolographicCity() {
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden', pointerEvents: 'none', zIndex: 0, background: darkMode ? '#010308' : th.bg }}>
       <CanvasErrorBoundary>
         <Canvas
-          dpr={[1, 1.5]}
+          dpr={1}
           gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
           camera={{ position: [0, 45, 65], fov: 35, near: 0.1, far: 500 }}
           style={{ position: 'absolute', inset: 0 }}
         >
           <ambientLight intensity={1.0} color="#1a2235" />
-          <directionalLight position={[20, 40, 20]} intensity={1.5} color="#c0e8ff" castShadow shadow-mapSize={[2048, 2048]} />
+          <directionalLight position={[20, 40, 20]} intensity={1.5} color="#c0e8ff" castShadow shadow-mapSize={[1024, 1024]} />
           <pointLight position={[0, 15, 0]} intensity={2.0} color="#2b6bba" distance={80} />
           
           <Suspense fallback={null}>
             <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
             <CircularCityScene />
             
-            <EffectComposer multisampling={4}>
+            <EffectComposer multisampling={0}>
               <Bloom luminanceThreshold={0.9} luminanceSmoothing={0.8} intensity={1.5} />
             </EffectComposer>
           </Suspense>
