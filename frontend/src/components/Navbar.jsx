@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useAppStore, languages } from '../store/appStore'
 import { supabase } from '../services/supabase'
 import { getTheme } from '../utils/theme'
-import { HeartPulse } from 'lucide-react'
+import { HeartPulse, Menu, X } from 'lucide-react'
 import AppLogo from './AppLogo'
 import EmergencyModal from './EmergencyModal'
 
@@ -13,6 +13,7 @@ export default function Navbar() {
   const [user, setUser] = useState(null)
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [showEmergency, setShowEmergency] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const current = languages.find(l => l.code === language)
   const navigate = useNavigate()
   const location = useLocation()
@@ -61,9 +62,9 @@ export default function Navbar() {
           <AppLogo />
         </Link>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <div className="resp-hide" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <Link to="/" style={getBasicLinkStyle('/')}>Home</Link>
-          <Link to="/search" style={getBasicLinkStyle('/search')}>Health Streak</Link>
+          <Link to="/health-streak" style={getBasicLinkStyle('/health-streak')}>Health Streak</Link>
           <Link to="/ai-analysis" style={{ ...navLink, color: '#3b82f6', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px', background: isActive('/ai-analysis') ? 'rgba(59, 130, 246, 0.2)' : 'rgba(59, 130, 246, 0.05)', boxShadow: isActive('/ai-analysis') ? 'inset 0 0 0 1px rgba(59,130,246,0.5)' : 'none' }}>
             <span style={{ fontSize: '1.2em' }}>✨</span> AI Analysis
           </Link>
@@ -72,7 +73,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div className="resp-hide" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 
           <button className="emergency-btn" onClick={() => setShowEmergency(true)}
             style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '8px 16px', backgroundColor: '#dc2626', color: '#ffffff', borderRadius: 12, border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 700 }}>
@@ -129,7 +130,62 @@ export default function Navbar() {
             </Link>
           )}
         </div>
+
+        {/* Hamburger Icon for Mobile */}
+        <button 
+          className="resp-show-flex" 
+          style={{ display: 'none', background: 'none', border: 'none', color: th.text, cursor: 'pointer', padding: 8 }}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="mobile-menu-container">
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{...navLink, color: isActive('/') ? th.text : th.muted, fontWeight: isActive('/') ? 700 : 400, fontSize: 16}}>Home</Link>
+          <Link to="/health-streak" onClick={() => setIsMobileMenuOpen(false)} style={{...navLink, color: isActive('/health-streak') ? th.text : th.muted, fontWeight: isActive('/health-streak') ? 700 : 400, fontSize: 16}}>Health Streak</Link>
+          <Link to="/ai-analysis" onClick={() => setIsMobileMenuOpen(false)} style={{ ...navLink, color: '#3b82f6', fontWeight: 700, fontSize: 16 }}>✨ AI Analysis</Link>
+          <Link to="/ai-care-journey" onClick={() => setIsMobileMenuOpen(false)} style={{ ...navLink, color: '#a855f7', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px', fontSize: 16 }}>
+            <HeartPulse size={18} /> AI Care Workspace
+          </Link>
+          
+          <div style={{ height: 1, backgroundColor: th.border, margin: '8px 0' }}></div>
+          
+          <button className="emergency-btn" onClick={() => { setShowEmergency(true); setIsMobileMenuOpen(false); }}
+            style={{ padding: '12px 16px', backgroundColor: '#dc2626', color: '#ffffff', borderRadius: 12, border: 'none', fontSize: 16, fontWeight: 700, textAlign: 'center' }}>
+            🚨 Emergency
+          </button>
+          
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>
+            <button style={langBtn} onClick={() => setShowLang(!showLang)}>
+              🌐 {current?.native} <span style={{ fontSize: 10 }}>▾</span>
+            </button>
+            {user ? (
+              <div style={{ display: 'flex', gap: 12 }}>
+                <Link to="/favourites" onClick={() => setIsMobileMenuOpen(false)} style={{ color: th.text, textDecoration: 'none', display: 'flex', alignItems: 'center' }}>❤️</Link>
+                <button onClick={handleLogout} style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: 14, fontWeight: 600 }}>Sign Out</button>
+              </div>
+            ) : (
+              <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)} style={{ padding: '8px 16px', background: th.accentGradient, color: '#ffffff', borderRadius: 12, border: 'none', fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+                Sign In →
+              </Link>
+            )}
+          </div>
+          {showLang && (
+            <div style={{ marginTop: 8, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+              {languages.map(lang => (
+                <button key={lang.code} onClick={() => { setLanguage(lang.code); setShowLang(false); setIsMobileMenuOpen(false); }}
+                  style={{ padding: '8px', backgroundColor: language === lang.code ? 'rgba(79,140,255,0.12)' : 'transparent', color: language === lang.code ? th.accent2 : th.mutedStrong, border: '1px solid ' + (language === lang.code ? th.accent2 : th.border), borderRadius: 8, fontSize: 14 }}>
+                  {lang.native}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       <EmergencyModal isOpen={showEmergency} onClose={() => setShowEmergency(false)} />
     </nav>
   )

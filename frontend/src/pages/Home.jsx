@@ -149,6 +149,7 @@ const handleHeroMouseLeave = () => {
 
       {/* HERO — interactive 3D parallax layout */}
       <section
+        className="resp-stack"
         onMouseMove={handleHeroMouseMove}
         onMouseLeave={handleHeroMouseLeave}
         style={{
@@ -162,7 +163,7 @@ const handleHeroMouseLeave = () => {
       >
 
         {/* 3D Holographic City Background */}
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
+        <div className="resp-3d-city" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1 }}>
           <HolographicCity />
         </div>
 
@@ -170,7 +171,7 @@ const handleHeroMouseLeave = () => {
         <div style={{ position: 'absolute', inset: 0, zIndex: 2, background: 'linear-gradient(90deg, rgba(5,7,13,1) 0%, rgba(5,7,13,0.97) 30%, rgba(5,7,13,0.75) 44%, rgba(5,7,13,0.25) 56%, rgba(5,7,13,0) 66%)', pointerEvents: 'none' }}></div>
 
         {/* Content */}
-        <div style={{ width: '120%', padding: '80px 48px 80px 64px', marginLeft: '150px', position: 'relative', zIndex: 3 }}>
+        <div className="resp-hero-content" style={{ width: '120%', padding: '80px 48px 80px 64px', marginLeft: '150px', position: 'relative', zIndex: 3 }}>
           {/* Ambient Glows Behind Text */}
           <div style={{ position: 'absolute', top: '10%', left: '-10%', width: 400, height: 400, background: 'radial-gradient(circle, rgba(79,140,255,0.15) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none', zIndex: -1 }}></div>
           <div style={{ position: 'absolute', top: '40%', left: '20%', width: 300, height: 300, background: 'radial-gradient(circle, rgba(123,92,255,0.1) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none', zIndex: -1 }}></div>
@@ -185,7 +186,7 @@ const handleHeroMouseLeave = () => {
             </div>
 
             {/* Headline */}
-            <h1 style={{ fontSize: 'clamp(48px, 6vw, 72px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: -2.5, color: th.text, marginBottom: 24, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s' }}>
+            <h1 className="resp-hero-title" style={{ fontSize: 'clamp(48px, 6vw, 72px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: -2.5, color: th.text, marginBottom: 24, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s' }}>
               {t.hero1}<br/>
               <span style={{ position: 'relative', display: 'inline-block' }}>
                 <span style={{ background: th.accentGradientText, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', position: 'relative', zIndex: 2 }}>
@@ -202,7 +203,7 @@ const handleHeroMouseLeave = () => {
             </p>
 
             {/* Premium Stat Badges */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 32, marginBottom: 48, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s', backgroundColor: th.card, backdropFilter: th.blur, WebkitBackdropFilter: th.blur, padding: '16px 32px', borderRadius: 28, border: '1px solid ' + th.border, width: 'fit-content', boxShadow: '0 20px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+            <div className="resp-hero-stats" style={{ display: 'flex', alignItems: 'center', gap: 32, marginBottom: 48, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s', backgroundColor: th.card, backdropFilter: th.blur, WebkitBackdropFilter: th.blur, padding: '16px 32px', borderRadius: 28, border: '1px solid ' + th.border, width: 'fit-content', boxShadow: '0 20px 40px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
               {[
                 { num: '500+', label: 'Govt. Hospitals', color: '#59E1FF' },
                 { num: '29', label: 'States Active', color: '#818cf8' },
@@ -217,14 +218,14 @@ const handleHeroMouseLeave = () => {
                     <div style={{ fontSize: 13, color: '#64748b', marginTop: 6, fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1 }}>{stat.label}</div>
                   </div>
                   {i < arr.length - 1 && (
-                    <div style={{ width: 1, height: 40, backgroundColor: 'rgba(255,255,255,0.08)' }}></div>
+                    <div className="separator" style={{ width: 1, height: 40, backgroundColor: 'rgba(255,255,255,0.08)' }}></div>
                   )}
                 </div>
               ))}
             </div>
 
             {/* Ultra-Premium Search Box */}
-            <div ref={searchBoxRef} style={{ position: 'relative', zIndex: 50, marginBottom: 32, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s', maxWidth: 540 }}>
+            <div ref={searchBoxRef} className="resp-search-box" style={{ position: 'relative', zIndex: 50, marginBottom: 32, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s', maxWidth: 540 }}>
               {/* Outer animated gradient glow */}
               <div style={{ position: 'absolute', inset: -2, background: 'linear-gradient(120deg, rgba(79,140,255,0.4), rgba(123,92,255,0.4), rgba(52,211,153,0.3))', borderRadius: 28, filter: 'blur(16px)', opacity: 0.6, backgroundSize: '200% 200%', animation: 'gradientShift 8s ease infinite' }}></div>
               
@@ -263,8 +264,8 @@ const handleHeroMouseLeave = () => {
                 </div>
 
                 {/* Dropdowns & Button */}
-                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                  <div style={{ flex: '1 1 120px', position: 'relative' }}>
+                <div className="resp-search-inputs" style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                  <div style={{ flex: 1, position: 'relative' }}>
                     <div style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
                     </div>
@@ -292,7 +293,7 @@ const handleHeroMouseLeave = () => {
                     )}
                   </div>
 
-                  <div style={{ flex: '1 1 120px', position: 'relative' }}>
+                  <div style={{ flex: 1, position: 'relative' }}>
                     <div style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={state ? "#94a3b8" : "#475569"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                     </div>
@@ -368,7 +369,7 @@ const handleHeroMouseLeave = () => {
             </div>
 
             {/* Filter Chips without emojis */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s' }}>
+            <div className="resp-filter-chips" style={{ display: 'flex', flexWrap: 'wrap', gap: 12, opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(30px)', transition: 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s' }}>
               {[
                 { label: 'Emergency', filter: 'emergency', color: '#ef4444' }, 
                 { label: 'OPD Today', query: 'OPD Today', color: '#10b981' }, 
@@ -417,7 +418,7 @@ const handleHeroMouseLeave = () => {
 
       {/* STATS */}
       <section style={{ backgroundColor: th.cardSolid, borderTop: '1px solid ' + th.border, borderBottom: '1px solid ' + th.border }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', padding: '48px 24px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
+        <div className="resp-stats-grid" style={{ maxWidth: 900, margin: '0 auto', padding: '48px 24px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
           {STATS.map(s => (
             <div key={s.label} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 40, fontWeight: 900, background: th.accentGradientText, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', letterSpacing: -2 }}>{s.num}</div>
@@ -437,7 +438,7 @@ const handleHeroMouseLeave = () => {
           <p style={{ color: th.muted, marginTop: 12, fontSize: 16 }}>{t.featSub}</p>
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16, overflow: 'visible', padding: '20px 0', perspective: 1200 }}>
+        <div className="resp-feature-cards" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 16, overflow: 'visible', padding: '20px 0', perspective: 1200 }}>
           {FEATURES_V2.map((f, i) => (
             <div key={f.title}
             ref={el => featureRefs.current[i] = el}
@@ -544,7 +545,7 @@ transformStyle: 'preserve-3d',
         </div>
 
         {/* Constrained Content Container */}
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 1200, margin: '0 auto', padding: '120px 24px 60px', display: 'flex', flexDirection: 'column', minHeight: 600 }}>
+        <div className="resp-p-mobile" style={{ position: 'relative', zIndex: 2, maxWidth: 1200, margin: '0 auto', padding: '120px 24px 60px', display: 'flex', flexDirection: 'column', minHeight: 600 }}>
           
           {/* Floating Badges removed as per user request */}
 
@@ -572,7 +573,7 @@ transformStyle: 'preserve-3d',
           </div>
 
           {/* Bottom Stats Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 32, paddingTop: 40, borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: 80 }}>
+          <div className="resp-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 32, paddingTop: 40, borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: 80 }}>
             <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
               <div style={{ width: 52, height: 52, borderRadius: 12, background: 'rgba(59,130,246,0.15)', border: '1px solid rgba(59,130,246,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#59e1ff' }}>
                 <HospitalIcon />
@@ -619,7 +620,7 @@ transformStyle: 'preserve-3d',
       {/* FOOTER - REDESIGNED FROM IMAGE */}
       <footer style={{ backgroundColor: th.cardSolid, borderTop: '1px solid ' + th.border, padding: '80px 24px 40px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 40, marginBottom: 80 }}>
+          <div className="resp-footer-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 40, marginBottom: 80 }}>
             {/* Logo & Social Column */}
             <div style={{ gridColumn: 'span 2', maxWidth: 300 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>

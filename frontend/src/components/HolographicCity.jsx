@@ -370,15 +370,19 @@ function CircularCityScene() {
     }
 
     // PERFECT DIORAMA CAMERA POSITION
-    // Shifted left (-15) so the city appears on the right side of the screen
-    const targetX = pointer.x * 6.0 - 15.0
-    const targetY = 45.0 + pointer.y * 3.0
-    const targetZ = 65.0
+    const isMobile = window.innerWidth < 1024;
+    // Shifted left (-15) on desktop so the city appears on the right side of the screen
+    // On mobile, keep it centered (0) and pull the camera back (z=95) so it fits
+    const shiftX = isMobile ? 0 : -15.0;
+    
+    const targetX = pointer.x * 6.0 + shiftX
+    const targetY = (isMobile ? 55.0 : 45.0) + pointer.y * 3.0
+    const targetZ = isMobile ? 95.0 : 65.0
 
     camera.position.x = THREE.MathUtils.lerp(camera.position.x, targetX, 0.04)
     camera.position.y = THREE.MathUtils.lerp(camera.position.y, targetY, 0.04)
     camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZ, 0.04)
-    camera.lookAt(-15, 0, 0)
+    camera.lookAt(shiftX, 0, 0)
   })
 
   return (

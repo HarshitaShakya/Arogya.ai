@@ -109,6 +109,10 @@ flowchart LR
     I --> J
 ```
 
+## 🔒 Security Notice
+> [!WARNING]
+> **Secret Rotation Required**: Previously, this repository contained hardcoded secrets (including a Supabase Anon Key) in the source code. These have now been moved to environment variables. Because the git history still contains these old commits, please ensure you **rotate your Supabase Anon key** and any other previously exposed credentials immediately. Do not commit `.env` files.
+
 ## 🤝 Contributing
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 

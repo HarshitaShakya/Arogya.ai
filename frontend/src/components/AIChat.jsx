@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useAppStore } from '../store/appStore'
 import FloatingRobot from './FloatingRobot'
+import { chatWithAI } from '../services/api'
 
 export default function AIChat() {
   const [open, setOpen] = useState(false)
@@ -69,28 +70,19 @@ export default function AIChat() {
     if (!input.trim() || loading) return
     const userMsg = input.trim()
     setInput('')
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }])
+    const newMessages = [...messages, { role: 'user', text: userMsg }];
+    setMessages(newMessages)
     setLoading(true)
     
-    // Simulate network delay
-    await new Promise(r => setTimeout(r, 1000))
-    
-    // Step-by-step Mock Logic
-    let botReply = ''
-    if (chatState === 'initial') {
-      botReply = 'Is the pain sharp or dull?'
-      setChatState('asking_type')
-    } else if (chatState === 'asking_type') {
-      botReply = 'Since when have you been experiencing this?'
-      setChatState('asking_duration')
-    } else if (chatState === 'asking_duration') {
-      botReply = 'Based on your symptoms, it could be related to muscle strain, acid reflux, or a potential cardiac issue. With a confidence of 87%, I recommend visiting the **Cardiology** or **General Medicine** department for a proper checkup. \n\nWould you like me to find the nearest government hospitals with these free departments?'
-      setChatState('done')
-    } else {
-      botReply = 'I can help you search for the nearest hospitals with those departments. Just click "Find Hospital" in the navigation bar!'
+    try {
+      // Call the real backend AI with full chat history
+      const res = await chatWithAI(newMessages)
+      const botReply = res.data.reply
+      setMessages(prev => [...prev, { role: 'assistant', text: botReply }])
+    } catch (err) {
+      console.error(err)
+      setMessages(prev => [...prev, { role: 'assistant', text: 'Sorry, I am having trouble connecting to the medical AI server right now. Please try again later.' }])
     }
-
-    setMessages(prev => [...prev, { role: 'assistant', text: botReply }])
     setLoading(false)
   }
 

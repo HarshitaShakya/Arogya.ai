@@ -64,7 +64,7 @@ export default function FreeServicesResults() {
 
     return (
       <Link key={h.id} to={'/hospital/' + h.id} style={{ textDecoration: 'none', display: 'block' }}>
-        <div style={{ backgroundColor: bgStyle, backdropFilter: darkMode ? th.blur : 'none', border: borderStyle, borderRadius: 20, padding: 24, transition: 'all 0.2s', display: 'flex', flexDirection: 'column', gap: 16 }}
+        <div className="resp-p-card" style={{ backgroundColor: bgStyle, backdropFilter: darkMode ? th.blur : 'none', border: borderStyle, borderRadius: 20, padding: 24, transition: 'all 0.2s', display: 'flex', flexDirection: 'column', gap: 16 }}
           onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = 'rgba(245,158,11,0.5)' }}
           onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = isTop3 ? '#f59e0b' : th.border }}>
           
@@ -112,7 +112,7 @@ export default function FreeServicesResults() {
     <div style={{ backgroundColor: th.bg, backgroundImage: darkMode ? th.bgGradient : 'none', minHeight: '100vh', transition: 'all 0.4s ease', position: 'relative' }}>
       <PageGlow corner="top-right" color={darkMode ? 'rgba(245, 158, 11, 0.15)' : 'rgba(245, 158, 11, 0.05)'} />
       
-      <div style={{ maxWidth: 1000, margin: '0 auto', padding: '40px 24px', position: 'relative', zIndex: 1 }}>
+      <div className="resp-p-page" style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         {/* Special Header for Free Services */}
         <div style={{ marginBottom: 32, display: 'flex', alignItems: 'center', gap: 20 }}>
           <div style={{ width: 64, height: 64, borderRadius: 20, backgroundColor: 'rgba(245, 158, 11, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, border: '1px solid rgba(245,158,11,0.3)' }}>

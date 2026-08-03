@@ -4,13 +4,14 @@ from app.services.ai_service import get_ai_response, analyze_medical_image, get_
 
 router = APIRouter()
 
+from typing import List, Dict, Any
+
 class ChatMessage(BaseModel):
-    message: str
-    language: str = "hinglish"
+    messages: List[Dict[str, Any]]
 
 @router.post("/chat")
 def chat(body: ChatMessage):
-    response = get_ai_response(body.message, body.language)
+    response = get_ai_response(body.messages)
     return {"reply": response}
 
 @router.post("/analyze-image")

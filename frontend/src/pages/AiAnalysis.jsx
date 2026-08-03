@@ -59,7 +59,8 @@ export default function AiAnalysis() {
       const formData = new FormData()
       formData.append('file', selectedFile)
       
-      const response = await fetch('http://localhost:8000/api/ai/analyze-image', {
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      const response = await fetch(`${baseUrl}/api/ai/analyze-image`, {
         method: 'POST',
         body: formData,
       })
@@ -133,7 +134,7 @@ export default function AiAnalysis() {
   }
 
   return (
-    <div style={{ minHeight: 'calc(100vh - 73px)', position: 'relative', overflow: 'hidden', padding: '40px 24px' }}>
+    <div className="resp-p-page" style={{ minHeight: 'calc(100vh - 73px)', position: 'relative', overflow: 'hidden' }}>
       <PageGlow />
       <style>{`
         @keyframes scan {

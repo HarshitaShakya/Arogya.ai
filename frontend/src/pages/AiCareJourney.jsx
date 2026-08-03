@@ -175,7 +175,7 @@ export default function AiCareJourney() {
         <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '40vw', height: '40vw', background: 'radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 60%)', filter: 'blur(80px)' }}></div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
+      <div className="resp-px-mobile" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
         
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 48 }}>
@@ -187,10 +187,10 @@ export default function AiCareJourney() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start' }}>
+        <div className="resp-stack" style={{ display: 'flex', gap: 40, alignItems: 'flex-start' }}>
           
           {/* Left Sidebar: Timeline Navigation */}
-          <div style={{ width: 280, position: 'sticky', top: 120, display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <div className="resp-w-full" style={{ width: 280, position: 'sticky', top: 120, display: 'flex', flexDirection: 'column', gap: 24 }}>
             <div style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 20, padding: 24, backdropFilter: 'blur(20px)' }}>
               <div style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 20 }}>Journey Timeline</div>
               
@@ -230,7 +230,7 @@ export default function AiCareJourney() {
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 32 }}>
             
             {!hasAnalyzed && (
-              <div ref={sectionRefs.symptoms} style={{ background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 24, padding: 32, boxShadow: '0 20px 40px rgba(0,0,0,0.3)', backdropFilter: 'blur(20px)' }}>
+              <div ref={sectionRefs.symptoms} className="resp-p-card" style={{ background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 24, padding: 32, boxShadow: '0 20px 40px rgba(0,0,0,0.3)', backdropFilter: 'blur(20px)' }}>
                 <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>How are you feeling today?</h2>
                 <p style={{ color: '#94a3b8', marginBottom: 24 }}>Select common symptoms or describe how you feel in your own words.</p>
                 
@@ -274,7 +274,7 @@ export default function AiCareJourney() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 32, animation: 'fadeIn 0.5s ease-out' }}>
                 
                 {/* AI Summary Header */}
-                <div ref={sectionRefs.summary} style={{ background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9))', border: '1px solid rgba(168,85,247,0.3)', borderRadius: 24, padding: 32, boxShadow: '0 20px 40px rgba(0,0,0,0.3)', backdropFilter: 'blur(20px)' }}>
+                <div ref={sectionRefs.summary} className="resp-p-card" style={{ background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9))', border: '1px solid rgba(168,85,247,0.3)', borderRadius: 24, padding: 32, boxShadow: '0 20px 40px rgba(0,0,0,0.3)', backdropFilter: 'blur(20px)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
                     <div style={{ background: 'rgba(168,85,247,0.2)', padding: 8, borderRadius: 12 }}><Activity size={24} color="#a855f7" /></div>
                     <h2 style={{ fontSize: 24, fontWeight: 700, margin: 0 }}>Your Health Summary</h2>
@@ -301,8 +301,8 @@ export default function AiCareJourney() {
                 </div>
 
                 {/* AI Analysis & Urgency */}
-                <div ref={sectionRefs.analysis} style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 24 }}>
-                  <div style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24 }}>
+                <div ref={sectionRefs.analysis} className="resp-grid-1" style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: 24 }}>
+                  <div className="resp-p-card" style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24 }}>
                     <div style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 16 }}>Likely Conditions</div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
                       {(analysisData?.conditions || ['Viral Fever', 'Common Cold', 'Seasonal Allergy']).map((cond, idx) => (
@@ -318,7 +318,7 @@ export default function AiCareJourney() {
                   </div>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                    <div style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24, flex: 1 }}>
+                    <div className="resp-p-card" style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24, flex: 1 }}>
                       <div style={{ color: '#94a3b8', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 16 }}>Should you seek care?</div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                         <div style={{ opacity: analysisData?.urgency?.level === 'Home Care' ? 1 : 0.4, background: analysisData?.urgency?.level === 'Home Care' ? 'rgba(16,185,129,0.1)' : 'transparent', padding: analysisData?.urgency?.level === 'Home Care' ? '12px 16px' : '0', borderRadius: 12, border: analysisData?.urgency?.level === 'Home Care' ? '1px solid rgba(16,185,129,0.3)' : 'none', display: 'flex', alignItems: 'center', gap: 12, color: analysisData?.urgency?.level === 'Home Care' ? '#10b981' : '#fff', fontWeight: analysisData?.urgency?.level === 'Home Care' ? 600 : 400 }}>
@@ -333,7 +333,7 @@ export default function AiCareJourney() {
                       </div>
                     </div>
                     
-                    <div style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(15,23,42,0.8))', border: '1px solid rgba(59,130,246,0.3)', borderRadius: 24, padding: 24 }}>
+                    <div className="resp-p-card" style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(15,23,42,0.8))', border: '1px solid rgba(59,130,246,0.3)', borderRadius: 24, padding: 24 }}>
                       <div style={{ color: '#60a5fa', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>Recommended Dept</div>
                       <div style={{ color: '#fff', fontSize: 22, fontWeight: 700, marginBottom: 8 }}>🩺 {analysisData?.department || 'General Physician'}</div>
                       <div style={{ color: '#94a3b8', fontSize: 14 }}>Alternative: {analysisData?.alternative || 'ENT Specialist'}</div>
@@ -342,7 +342,7 @@ export default function AiCareJourney() {
                 </div>
 
                 {/* Online Consultation */}
-                <div ref={sectionRefs.consultation} style={{ background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9))', border: '1px solid rgba(168,85,247,0.3)', borderRadius: 24, padding: 32 }}>
+                <div ref={sectionRefs.consultation} className="resp-p-card" style={{ background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9))', border: '1px solid rgba(168,85,247,0.3)', borderRadius: 24, padding: 32 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
                     <h3 style={{ fontSize: 20, fontWeight: 700, margin: 0, display: 'flex', alignItems: 'center', gap: 10 }}><Video color="#a855f7" size={24}/> Online Consultation</h3>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#10b981', fontSize: 14, fontWeight: 600 }}>
@@ -380,10 +380,10 @@ export default function AiCareJourney() {
                 </div>
 
                 {/* Grid: Schemes & Preparation */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                <div className="resp-grid-1" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
                   
                   {/* Schemes */}
-                  <div ref={sectionRefs.schemes} style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24 }}>
+                  <div ref={sectionRefs.schemes} className="resp-p-card" style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24 }}>
                     <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}><ShieldCheck size={20} color="#10b981" /> Government Schemes</h3>
                     <div style={{ background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.2)', padding: 16, borderRadius: 12, marginBottom: 16 }}>
                       <div style={{ color: '#34d399', fontSize: 12, fontWeight: 700, marginBottom: 4 }}>ELIGIBLE SCHEME</div>
@@ -409,7 +409,7 @@ export default function AiCareJourney() {
                   </div>
 
                   {/* Preparation */}
-                  <div ref={sectionRefs.prep} style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24 }}>
+                  <div ref={sectionRefs.prep} className="resp-p-card" style={{ background: 'rgba(15,23,42,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 24, padding: 24 }}>
                     <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}><FileText size={20} color="#3b82f6" /> Before You Visit</h3>
                     
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 24 }}>
@@ -436,7 +436,7 @@ export default function AiCareJourney() {
                 </div>
 
                 {/* Medication Tracker */}
-                <div ref={sectionRefs.meds} style={{ background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9))', border: prescriptionState === 'complete' ? '1px solid rgba(16,185,129,0.3)' : '1px dashed rgba(255,255,255,0.2)', borderRadius: 24, padding: 40, textAlign: 'center', transition: 'all 0.3s' }}>
+                <div ref={sectionRefs.meds} className="resp-p-card" style={{ background: 'linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9))', border: prescriptionState === 'complete' ? '1px solid rgba(16,185,129,0.3)' : '1px dashed rgba(255,255,255,0.2)', borderRadius: 24, padding: 40, textAlign: 'center', transition: 'all 0.3s' }}>
                   
                   {prescriptionState === 'idle' && (
                     <>

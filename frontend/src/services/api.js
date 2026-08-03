@@ -46,4 +46,4 @@ export const searchHospitals = async (q) => {
 export const getDepartments = (hospitalId) => API.get(`/departments/${hospitalId}`)
 export const getReviews = (hospitalId) => API.get(`/reviews/${hospitalId}`)
 export const addReview = (hospitalId, data) => API.post(`/reviews/${hospitalId}`, data)
-export const chatWithAI = (message) => API.post('/ai/chat', { message, language: 'hinglish' })
+export const chatWithAI = (messages) => API.post('/ai/chat', { messages })

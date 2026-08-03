@@ -11,12 +11,17 @@ load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-def get_ai_response(message: str, language: str = "auto") -> str:
+def get_ai_response(messages: list) -> str:
     system_prompt = """You are Arogya Assistant, a knowledgeable medical triage AI for Indian government hospitals.
 
-LANGUAGE RULE - HIGHEST PRIORITY:
-Detect the language of the user message and respond in that EXACT same language.
-English input = English response. Hindi input = Hindi response. Tamil input = Tamil response. NEVER mix.
+LANGUAGE RULE:
+Respond ONLY in English.
+
+CONVERSATION FLOW RULE:
+Do NOT immediately give a final recommendation on the first symptom.
+1. When the user first describes a symptom, ask EXACTLY ONE relevant diagnostic question (e.g., duration, severity, accompanying symptoms) at a time to understand the condition better. Do NOT ask multiple questions in a single response. Keep the question short and concise.
+2. Wait for the user to answer the question before asking the next one, if necessary.
+3. Only after you have gathered enough information (i.e. the user has answered your questions), provide your final suggestion.
 
 SYMPTOM TO DEPARTMENT MAPPING:
 - Fever, headache, body ache, cold, nausea, vomiting = General Medicine OPD
@@ -38,31 +43,39 @@ SYMPTOM TO DEPARTMENT MAPPING:
 - High BP = General Medicine or Cardiology
 - Cancer screening = Oncology
 
-RESPONSE FORMAT:
+FINAL RECOMMENDATION FORMAT (Use ONLY when you have enough information):
 1. One sentence acknowledging the symptom warmly
 2. What condition it could be (brief, educational)
 3. Which department to visit (specific)
 4. Urgency: Routine OPD / Within 24 hours / EMERGENCY - go now
 5. One practical tip
-6. Carry Aadhar card and Ayushman Bharat card if available
+6. Mention: Please carry your Aadhar card and Ayushman Bharat card if available.
 
 RULES:
-- If emergency symptoms detected say GO TO EMERGENCY NOW
-- Never diagnose definitively
-- Max 150 words
-- Be warm but accurate and professional
-- Temperature is low so be factual not creative"""
+- If emergency symptoms are detected, say GO TO EMERGENCY NOW without asking questions.
+- Never diagnose definitively.
+- Max 150 words per response.
+- Be factual, warm, and professional."""
 
-    response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": message}
-        ],
-        max_tokens=400,
-        temperature=0.2,
-    )
-    return response.choices[0].message.content
+    api_messages = [{"role": "system", "content": system_prompt}]
+    for m in messages:
+        role = m.get("role", "user")
+        if role not in ["user", "assistant"]:
+            role = "user"
+        content = m.get("text", m.get("content", ""))
+        api_messages.append({"role": role, "content": content})
+
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=api_messages,
+            max_tokens=400,
+            temperature=0.3,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"Error calling Groq API: {e}")
+        return "Sorry, I am having trouble connecting to the AI service right now."
 
 def analyze_medical_image(image_bytes: bytes, mime_type: str = "image/jpeg") -> dict:
     try:

@@ -155,10 +155,7 @@ export default function Auth() {
 
         <div style={{ display: 'flex', gap: 16 }}>
           <button className="social-btn" onClick={() => handleOAuthLogin('google')} style={{ flex: 1, padding: '10px', background: 'transparent', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, color: '#fff', fontWeight: 500, fontSize: 13, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style={{ width: 16, height: 16 }} /> Google
-          </button>
-          <button className="social-btn" onClick={() => handleOAuthLogin('apple')} style={{ flex: 1, padding: '10px', background: 'transparent', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, color: '#fff', fontWeight: 500, fontSize: 13, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.04C14.33 2 15.69 3.5 15.5 5.54C13.46 5.67 11.75 4 12 2.04M10.74 21.3C8.85 21.3 7.82 20.08 6.54 18.06C5 15.66 3 10.97 5.12 7.61C6.27 5.75 8.1 4.7 10 4.75C11.64 4.8 12.82 5.76 13.9 5.75C14.97 5.74 16.5 4.6 18.3 4.7C19.46 4.75 21.1 5.2 22.14 6.75C19 8.5 19.5 12.75 22 13.9C21.1 16.2 19.5 18.5 18.3 20.1C17.15 21.6 16 22 14.85 21.9C13.56 21.8 13.1 21 11.66 21C10.22 21 9.64 21.8 8.44 21.9C8 21.95 7.4 21.85 6.74 21.3Z"/></svg> Apple
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style={{ width: 16, height: 16 }} /> Continue with Google
           </button>
         </div>
 

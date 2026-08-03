@@ -46,9 +46,9 @@ export default function HospitalProfile() {
 
   return (
     <div style={{ backgroundColor: th.bg, backgroundImage: darkMode ? th.bgGradient : 'none', minHeight: '100vh', transition: 'all 0.3s ease' }}>
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px' }}>
+      <div className="resp-p-page" style={{ maxWidth: 900, margin: '0 auto' }}>
 
-        <div style={{ backgroundColor: th.card, backdropFilter: darkMode ? th.blur : 'none', WebkitBackdropFilter: darkMode ? th.blur : 'none', border: '1px solid ' + th.border, borderRadius: 24, padding: 32, marginBottom: 24 }}>
+        <div className="resp-p-card" style={{ backgroundColor: th.card, backdropFilter: darkMode ? th.blur : 'none', WebkitBackdropFilter: darkMode ? th.blur : 'none', border: '1px solid ' + th.border, borderRadius: 24, padding: 32, marginBottom: 24 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
             <div style={{ flex: 1 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
@@ -87,7 +87,7 @@ export default function HospitalProfile() {
         {tab === 'departments' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {departments.map(d => (
-              <div key={d.id} style={{ backgroundColor: th.card, border: '1px solid ' + th.border, borderRadius: 16, padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div key={d.id} className="resp-p-card" style={{ backgroundColor: th.card, border: '1px solid ' + th.border, borderRadius: 16, padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12 }}>
                 <div>
                   <h3 style={{ color: th.text, fontWeight: 700, fontSize: 15, margin: '0 0 6px' }}>{d.name}</h3>
                   <p style={{ color: th.muted, fontSize: 13, margin: '0 0 4px' }}>📅 {d.opd_days}</p>

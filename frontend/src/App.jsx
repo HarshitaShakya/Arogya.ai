@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import AIChat from './components/AIChat'
 import Home from './pages/Home'
 import SearchResults from './pages/SearchResults'
+import HealthStreak from './pages/HealthStreak'
 import HospitalProfile from './pages/HospitalProfile'
 import Auth from './pages/Auth'
 import Favourites from './pages/Favourites'
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/health-streak" element={<HealthStreak />} />
           <Route path="/free-services-search" element={<FreeServicesResults />} />
           <Route path="/hospital/:id" element={<HospitalProfile />} />
           <Route path="/features" element={<Features />} />
